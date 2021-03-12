@@ -24,7 +24,7 @@ public class User {
 	@Column(length = 20)
 	private String userName;
 	@Column(length = 20,nullable = false,name="pwd")
-//	@JsonIgnore
+	@JsonIgnore
 	private String password;
 	@Column(length = 20,name="f_name")
 		private String firstName;
@@ -42,6 +42,7 @@ public class User {
 	@JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Booking> bookings;
+	
 	
 
 

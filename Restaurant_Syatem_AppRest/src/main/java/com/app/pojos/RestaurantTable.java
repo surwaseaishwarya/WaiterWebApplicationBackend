@@ -35,6 +35,7 @@ public class RestaurantTable {
     private int seating;
     
     
+    
     @Column(name="date")
     private LocalDate date;
     
@@ -44,7 +45,7 @@ public class RestaurantTable {
     
 
     @JsonIgnoreProperties("restaurantTables")
-    @ManyToMany //one to many 
+    @ManyToMany        //one to many relation ............
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
             name = "tables_bookings",
