@@ -1,19 +1,16 @@
 package com.app.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import javax.validation.Valid;
-
 
 import java.util.List;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.pojos.Status;
@@ -31,8 +28,7 @@ public class UserControllers {
 	public List<User> getAllusers(User user) {
 		
 		return userService.getAllUser();
-		
-	}
+		}
 	
     @PostMapping("/users/register")
     public Status registerUser(@Valid @RequestBody User newUser) {
@@ -53,9 +49,9 @@ public class UserControllers {
     public Status loginUser(@Valid @RequestBody User user) {
         List<User> users = userService.getAllUser();             //
         for (User other : users) {
-            if (other.equals(user)) {
+            if (other.equals(user) ) {
                 
-                userService.save(user);
+               // userService.save(user);
                 return Status.SUCCESS;
             }
         }
@@ -69,7 +65,7 @@ public class UserControllers {
         for (User other : users) {
             if (other.equals(user)) {
                
-                userService.save(user);
+              //  userService.save(user);
                 return Status.SUCCESS;
             }
         }
@@ -85,7 +81,7 @@ public class UserControllers {
     }
 	
     @DeleteMapping("/users/{id}")
-    public Status userDeleteById(@PathVariable Long id) {
+    public Status userDeleteById(@PathVariable Integer id) {
     	
     	userService.deleteById(id);
     	return Status.SUCCESS;

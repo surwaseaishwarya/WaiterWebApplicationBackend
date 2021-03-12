@@ -1,15 +1,18 @@
 package com.app.pojos;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="user_info")
@@ -35,18 +38,15 @@ public class User {
 	private String email;
 	
 	
-	@Enumerated(EnumType.STRING)
-	private Role role;
-
-
-	public User() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
+	@JsonIgnore
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Booking> bookings;
+	
 
 
 	public User(String userName, String password, String firstName, String lastName, String phoneNumber, String email,
-			Role role) {
+			List<Booking> bookings) {
 		super();
 		this.userName = userName;
 		this.password = password;
@@ -54,7 +54,36 @@ public class User {
 		this.lastName = lastName;
 		this.phoneNumber = phoneNumber;
 		this.email = email;
-		this.role = role;
+		this.bookings = bookings;
+	}
+
+
+	public List<Booking> getBookings() {
+		return bookings;
+	}
+
+
+	public void setBookings(List<Booking> bookings) {
+		this.bookings = bookings;
+	}
+
+
+	public User() {
+		super();
+		System.out.println("in the user constructor .............");
+	}
+
+
+	public User(String userName, String password, String firstName, String lastName, String phoneNumber, String email
+			) {
+		super();
+		this.userName = userName;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.phoneNumber = phoneNumber;
+		this.email = email;
+		
 	}
 
 
@@ -128,14 +157,7 @@ public class User {
 	}
 
 
-	public Role getRole() {
-		return role;
-	}
-
-
-	public void setRole(Role role) {
-		this.role = role;
-	}
+	
 	
 	@Override
     public boolean equals(Object o) {
@@ -154,12 +176,6 @@ public class User {
     }
 	
 	
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", userName=" + userName + ", password=" + password + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", phoneNumber=" + phoneNumber + ", email=" + email + ", role=" + role
-				+ "]";
-	}
 	
 	
 	

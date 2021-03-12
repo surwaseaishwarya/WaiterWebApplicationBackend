@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService{
 	public User save(User user) {
              
 		User user_details=new User(user.getEmail(), user.getPassword(), user.getFirstName(), user.getLastName(),
-				user.getPhoneNumber(), user.getEmail(),user.getRole());
+				user.getPhoneNumber(), user.getEmail());
 
 		return userRepo.save(user_details);
 	}
@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService{
 
 
 	@Override
-	public void deleteById(long id) {
+	public void deleteById(Integer id) {
 		
 		
 		userRepo.deleteById(id);
