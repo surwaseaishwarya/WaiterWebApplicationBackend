@@ -4,18 +4,25 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
 
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -26,33 +33,35 @@ public class RestaurantTable {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	
+	@Column(name="table_id")
     private Long id;
 
     @Column(name= "table_number",length=10)
-    private int tableNumber;
+    private Integer tableNumber;
 
     @Column(name = "seating",length=10)
-    private int seating;
+    private Integer seating;
     
     
+   
+//  //one to many relation ............
+//    @JsonIgnoreProperties("restaurantTables")
+//    @ManyToMany        
+//    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+//    @JoinTable(
+//            name = "tables_bookings",
+//            joinColumns = {@JoinColumn(name = "table_id", nullable = false, updatable = false)},
+//            inverseJoinColumns = {@JoinColumn(name="booking_id", nullable = false, updatable = false)}
+//    )
+//    private List<Booking> bookings;
     
-    @Column(name="date")
-    private LocalDate date;
     
-    
-    @Column(name="time")
-    private LocalTime time;
-    
+  //mappings ........
+	
+//    @OneToOne
+//	@JoinColumn(name = "booking_id", nullable = false)
+//	private Booking booking;
 
-    @JsonIgnoreProperties("restaurantTables")
-    @ManyToMany        //one to many relation ............
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @JoinTable(
-            name = "tables_bookings",
-            joinColumns = {@JoinColumn(name = "table_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {@JoinColumn(name="booking_id", nullable = false, updatable = false)}
-    )
-    private List<Booking> bookings;
 
 
 	public RestaurantTable() {
@@ -60,17 +69,14 @@ public class RestaurantTable {
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	public RestaurantTable(int tableNumber, int seating, LocalDate date, LocalTime time, List<Booking> bookings) {
+
+
+	public RestaurantTable(Integer tableNumber, Integer seating, Booking booking) {
 		super();
 		this.tableNumber = tableNumber;
 		this.seating = seating;
-		this.date = date;
-		this.time = time;
-		this.bookings = bookings;
+		//this.booking = booking;
 	}
-
-
 
 
 
@@ -79,63 +85,51 @@ public class RestaurantTable {
 	}
 
 
+
 	public void setId(Long id) {
 		this.id = id;
 	}
 
 
-	public int getTableNumber() {
+
+	public Integer getTableNumber() {
 		return tableNumber;
 	}
 
 
-	public void setTableNumber(int tableNumber) {
+
+	public void setTableNumber(Integer tableNumber) {
 		this.tableNumber = tableNumber;
 	}
 
 
-	public int getSeating() {
+
+	public Integer getSeating() {
 		return seating;
 	}
 
 
-	public void setSeating(int seating) {
+
+	public void setSeating(Integer seating) {
 		this.seating = seating;
 	}
 
 
-	public LocalDate getDate() {
-		return date;
-	}
+	
+	
+//
+//	public Booking getBooking() {
+//		return booking;
+//	}
+//
+//
+//
+//	public void setBooking(Booking booking) {
+//		this.booking = booking;
+//	}
+//    
 
-
-	public void setDate(LocalDate date) {
-		this.date = date;
-	}
-
-
-	public LocalTime getTime() {
-		return time;
-	}
-
-
-	public void setTime(LocalTime time) {
-		this.time = time;
-	}
-
-
-	public List<Booking> getBookings() {
-		return bookings;
-	}
-
-
-	public void setBookings(List<Booking> bookings) {
-		this.bookings = bookings;
-	}
-    
-    
-    
-    
+	
 	
 
 }

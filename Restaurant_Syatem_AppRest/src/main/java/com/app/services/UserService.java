@@ -8,12 +8,13 @@ import com.app.pojos.User;
 public interface UserService {
 	
 	
-	public User save(User user);
-	public List<User> getAllUser();
-	public void deleteAll();
-	
-	public void deleteById(Integer id);
-	
+//	public User save(User user);
+//	public List<User> getAllUser();
+//	public void deleteAll();
+//	
+//	public void deleteById(Integer id);
+//	public User updateUserDetails(Integer id, User user);
+//	
 	
 
 }

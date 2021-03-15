@@ -7,7 +7,7 @@ import com.app.pojos.User;
 
 
 @Repository
-public interface UserRepository extends JpaRepositoryImplementation<User, Integer> {
+public interface UserRepository extends JpaRepositoryImplementation<User, Long> {
 	
 	
 

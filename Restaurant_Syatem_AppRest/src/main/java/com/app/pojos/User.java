@@ -20,23 +20,26 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="user_id")
-	private Integer id;
+	private Long id;
+	
 	@Column(length = 20)
 	private String userName;
-	@Column(length = 20,nullable = false,name="pwd")
-	@JsonIgnore
+	
+	
+	@Column(length = 20,name="pwd",nullable = false)
 	private String password;
-	@Column(length = 20,name="f_name")
+	
+	@Column(length = 40,name="f_name")
 		private String firstName;
-	@Column(length = 20,name="l_name")
+	
+	@Column(length = 40,name="l_name")
 	private String lastName;
 	
 	@Column (length=10,name="phone_number",unique = true)
 	private String phoneNumber;
 	
-	@Column(length=20,name="email",unique = true)
+	@Column(length=50,name="email",unique = true)
 	private String email;
-	
 	
 	
 	@JsonIgnore
@@ -44,8 +47,7 @@ public class User {
     private List<Booking> bookings;
 	
 	
-
-
+	
 	public User(String userName, String password, String firstName, String lastName, String phoneNumber, String email,
 			List<Booking> bookings) {
 		super();
@@ -88,12 +90,12 @@ public class User {
 	}
 
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -160,21 +162,6 @@ public class User {
 
 	
 	
-	@Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof User)) return false;
-        User user = (User) o;
-        return Objects.equals(userName, user.userName) &&
-                Objects.equals(password, user.password);
-    }
-
-
-	@Override
-    public int hashCode() {
-        return Objects.hash(id, userName, password 
-                            );
-    }
 	
 	
 	
