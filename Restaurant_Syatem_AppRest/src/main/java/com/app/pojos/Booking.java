@@ -14,8 +14,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "bookings")
@@ -26,12 +30,14 @@ public class Booking {
 	@Column(name = "booking_id")
 	private Long id;
 
-	@JsonFormat(pattern = "yyyy-MM-dd",shape=Shape.STRING)
+
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "date")
 	private LocalDate date;
 
 	
-	@JsonFormat(pattern = "hh:mm:ss a")
+	@DateTimeFormat(pattern = "hh:mm:ss")
 	@Column(name = "time")
 	private LocalTime time;
 
@@ -44,6 +50,8 @@ public class Booking {
 	@Column(name = "phone_number", length = 10, unique = true)
 	private String phone_number;
 
+	// MAPPINGS with user 
+	
 	
 	
 	@ManyToOne
@@ -62,18 +70,24 @@ public class Booking {
 	
 	
 	
+	
+	// MAppings table ..................
+	
+	
 	@OneToOne
 	@JoinColumn(name = "table_id", nullable = false)
 	private RestaurantTable restaurantTable;
 
 
 
+	
+
 	public Booking() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-
+         
 
 	public Booking(LocalDate date, LocalTime time, int numberInParty, String notes, String phone_number, User user,
 			RestaurantTable restaurantTable) {
@@ -183,7 +197,13 @@ public class Booking {
 		this.restaurantTable = restaurantTable;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "Booking [id=" + id + ", date=" + date + ", time=" + time + ", numberInParty=" + numberInParty
+				+ ", notes=" + notes + ", phone_number=" + phone_number  + "]";
+	}
+
+
 	
 	
 	

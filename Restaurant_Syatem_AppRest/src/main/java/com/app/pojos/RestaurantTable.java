@@ -19,7 +19,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
-
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
@@ -42,8 +42,20 @@ public class RestaurantTable {
     @Column(name = "seating",length=10)
     private Integer seating;
     
-    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(name = "bookingdate")
+	private LocalDate date;
    
+    
+public RestaurantTable(Integer tableNumber, Integer seating, LocalDate bookingdate) {
+		super();
+		this.tableNumber = tableNumber;
+		this.seating = seating;
+		this.date = date;
+	}
+
+
+
 //  //one to many relation ............
 //    @JsonIgnoreProperties("restaurantTables")
 //    @ManyToMany        
@@ -64,9 +76,24 @@ public class RestaurantTable {
 
 
 
+	
+
+
 	public RestaurantTable() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+
+
+	public void setDate(LocalDate date) {
+		this.date = date;
 	}
 
 
@@ -113,6 +140,18 @@ public class RestaurantTable {
 	public void setSeating(Integer seating) {
 		this.seating = seating;
 	}
+
+
+
+//	public Booking getBooking() {
+//		return booking;
+//	}
+//
+//
+//
+//	public void setBooking(Booking booking) {
+//		this.booking = booking;
+//	}
 
 
 	

@@ -23,6 +23,11 @@ public interface RestraurantTableService {
 	public RestaurantTable getTable(Long id);
 
 	
+	public RestaurantTable createTable(RestaurantTable table);
+	// public RestaurantTable getTableByDateTime(String date);
+	
+	
+	
 	// 2]
 	
 	

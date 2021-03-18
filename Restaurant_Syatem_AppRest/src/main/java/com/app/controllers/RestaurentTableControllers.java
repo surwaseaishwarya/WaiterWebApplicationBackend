@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,7 +34,7 @@ public class RestaurentTableControllers {
          @Autowired
          RestaurentTablesRepository restraurantTablesRepo;
 
-	 // get all tables ......
+	 // get all tables ......   
          
 	    @GetMapping(value = "/restaurant_tables")
 	    @CrossOrigin
@@ -47,6 +49,20 @@ public class RestaurentTableControllers {
 	    }
 
 	    
+	    // post mapping create tables ...........
+	    @PostMapping(value = "/restaurant_tables")
+	    public ResponseEntity<RestaurantTable> createTable(@RequestBody RestaurantTable table){
+	    	
+	    	RestaurantTable tables=restraurentService.createTable(table);
+	    	
+	    	return ResponseEntity.ok(tables);
+	    	
+	    	
+	    }
+	    
+	    
+	    
+	    
        // get table by id 
 	    
    @GetMapping(value="/restaurant_tables/tableid/{id}")
@@ -55,9 +71,9 @@ public class RestaurentTableControllers {
 	    	return restraurentService.getTable(id);
 	    	
 	    }
-	    
-	    
    
+   
+	    
 	    // get table by seating ..............
 	    
 	    @GetMapping(value="/restaurant_tables/{number}")
@@ -67,20 +83,6 @@ public class RestaurentTableControllers {
 	    }
 	    
 	    
-         
-	   
-	    
-	
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	
+   
 
 }

@@ -1,10 +1,7 @@
 package com.app.services;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,6 +31,10 @@ public class BookingServiceImpl implements BookingService  {
 	@Override
 	public Booking createBooking(Booking booking) {
 		
+		
+		
+		
+		
 		return bookingRepo.save(booking);
 		
 		
@@ -47,6 +48,14 @@ public class BookingServiceImpl implements BookingService  {
 		 
 		 Booking booking=findById.get();
 		 return booking;
+	}
+
+
+	@Override
+	public void deleteById(Long id) {
+		
+		bookingRepo.deleteById(id);
+	
 	}
 	
 

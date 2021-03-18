@@ -26,7 +26,7 @@ public interface BookingService {
 
 
 	
-	
+	public void deleteById(Long id);
 	
 	
 	

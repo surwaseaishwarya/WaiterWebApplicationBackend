@@ -6,8 +6,10 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,6 +39,8 @@ public class BookingControllers {
 	  
 	  @PostMapping
 	  public ResponseEntity<Booking> showAllBooking(@RequestBody Booking booking){
+		  
+		           
 		  
 		  
 		        Booking createBooking = bookingService.createBooking(booking);
@@ -72,6 +76,17 @@ public class BookingControllers {
 	
 	
 	
+	@DeleteMapping(value="/{id}")
+	public void deleteById(Long id) {
+		
+		bookingService.deleteById(id);
+		
+	}
+		
+		
+			
+		
+	}
 	
 	
 	
@@ -81,4 +96,4 @@ public class BookingControllers {
 	
 	
 	
-}
+

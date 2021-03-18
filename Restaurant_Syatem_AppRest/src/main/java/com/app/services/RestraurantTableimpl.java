@@ -34,6 +34,8 @@ public class RestraurantTableimpl implements RestraurantTableService {
 		return restraurantTablesRepo.findAll();
 
 	}
+	
+	
 
 	@Override
 	public RestaurantTable getTable(Long id ) {
@@ -41,6 +43,31 @@ public class RestraurantTableimpl implements RestraurantTableService {
 		RestaurantTable table = tableResponse.get();
 		return table;
 	}
+	
+	
+
+	@Override
+	public RestaurantTable createTable(RestaurantTable table) {
+
+		return restraurantTablesRepo.save(table);
+		
+		
+	}
+
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 } 
 	
